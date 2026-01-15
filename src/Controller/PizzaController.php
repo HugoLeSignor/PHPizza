@@ -17,6 +17,8 @@ class PizzaController extends AbstractController
     #[Route('/', name: 'app_pizza_index', methods: ['GET', 'POST'])]
     public function index(Request $request, PizzaRepository $repository, EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $pizza = new Pizza();
         $form = $this->createForm(PizzaType::class, $pizza);
         $form->handleRequest($request);
@@ -26,6 +28,7 @@ class PizzaController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
+                $pizza->setOwner($this->getUser());
                 $repository->add($pizza);
                 $em->flush();
                 $this->addFlash('success', 'Pizza ajoutée avec succès');
@@ -49,6 +52,13 @@ class PizzaController extends AbstractController
     #[Route('/pizza/{id}/edit', name: 'app_pizza_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Pizza $pizza, EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        if ($pizza->getOwner() !== $this->getUser()) {
+            $this->addFlash('error', 'Vous ne pouvez modifier que vos propres pizzas.');
+            return $this->redirectToRoute('app_pizza_index');
+        }
+
         $form = $this->createForm(PizzaType::class, $pizza);
         $form->handleRequest($request);
 
@@ -71,6 +81,13 @@ class PizzaController extends AbstractController
     #[Route('/pizza/{id}/delete', name: 'app_pizza_delete', methods: ['POST'])]
     public function delete(Request $request, Pizza $pizza, EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        if ($pizza->getOwner() !== $this->getUser()) {
+            $this->addFlash('error', 'Vous ne pouvez supprimer que vos propres pizzas.');
+            return $this->redirectToRoute('app_pizza_index');
+        }
+
         if ($this->isCsrfTokenValid('delete' . $pizza->getId(), $request->request->get('_token'))) {
             $em->remove($pizza);
             $em->flush();

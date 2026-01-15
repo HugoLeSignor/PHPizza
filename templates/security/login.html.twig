@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <main style="max-width: 480px; margin: 4rem auto; padding: 2rem; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); font-family: 'Segoe UI', Tahoma, sans-serif;">
+        <h1 style="margin-top: 0; text-align: center;">🍕 Connexion</h1>
+
+        {% if error %}
+            <div style="padding: 0.75rem 1rem; background: #ffe3e3; color: #721c24; border-radius: 8px; margin-bottom: 1rem;">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        {% for message in app.flashes('success') %}
+            <div style="padding: 0.75rem 1rem; background: #e6ffed; color: #155724; border-radius: 8px; margin-bottom: 1rem;">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <form method="post" style="display: grid; gap: 1rem;">
+            <div style="display: grid; gap: 0.35rem;">
+                <label for="username" style="font-weight: 500;">Nom d'utilisateur</label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" required 
+                       style="padding: 0.6rem 0.75rem; border-radius: 8px; border: 1px solid #d7dce2;">
+            </div>
+
+            <div style="display: grid; gap: 0.35rem;">
+                <label for="password" style="font-weight: 500;">Mot de passe</label>
+                <input type="password" id="password" name="_password" required 
+                       style="padding: 0.6rem 0.75rem; border-radius: 8px; border: 1px solid #d7dce2;">
+            </div>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <button type="submit" style="padding: 0.75rem; background: #ff7a18; color: #fff; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 1rem;">
+                Se connecter
+            </button>
+
+            <div style="text-align: center; margin-top: 0.5rem;">
+                <p style="color: #6c757d;">
+                    Pas encore de compte ? 
+                    <a href="{{ path('app_register') }}" style="color: #ff7a18; font-weight: 600; text-decoration: none;">
+                        S'inscrire
+                    </a>
+                </p>
+            </div>
+        </form>
+    </main>
+{% endblock %}

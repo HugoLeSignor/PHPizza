@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <main style="max-width: 480px; margin: 4rem auto; padding: 2rem; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); font-family: 'Segoe UI', Tahoma, sans-serif;">
+        <h1 style="margin-top: 0; text-align: center;">🍕 Inscription</h1>
+
+        {{ form_start(registrationForm, {'attr': {'style': 'display: grid; gap: 1rem;'}}) }}
+            
+            <div style="display: grid; gap: 0.35rem;">
+                {{ form_label(registrationForm.username, null, {'label_attr': {'style': 'font-weight: 500;'}}) }}
+                {{ form_widget(registrationForm.username, {'attr': {'style': 'padding: 0.6rem 0.75rem; border-radius: 8px; border: 1px solid #d7dce2;'}}) }}
+                {{ form_errors(registrationForm.username) }}
+            </div>
+
+            <div style="display: grid; gap: 0.35rem;">
+                {{ form_label(registrationForm.email, null, {'label_attr': {'style': 'font-weight: 500;'}}) }}
+                {{ form_widget(registrationForm.email, {'attr': {'style': 'padding: 0.6rem 0.75rem; border-radius: 8px; border: 1px solid #d7dce2;'}}) }}
+                {{ form_errors(registrationForm.email) }}
+            </div>
+
+            <div style="display: grid; gap: 0.35rem;">
+                {{ form_label(registrationForm.password.first, null, {'label_attr': {'style': 'font-weight: 500;'}}) }}
+                {{ form_widget(registrationForm.password.first, {'attr': {'style': 'padding: 0.6rem 0.75rem; border-radius: 8px; border: 1px solid #d7dce2;'}}) }}
+                {{ form_errors(registrationForm.password.first) }}
+            </div>
+
+            <div style="display: grid; gap: 0.35rem;">
+                {{ form_label(registrationForm.password.second, null, {'label_attr': {'style': 'font-weight: 500;'}}) }}
+                {{ form_widget(registrationForm.password.second, {'attr': {'style': 'padding: 0.6rem 0.75rem; border-radius: 8px; border: 1px solid #d7dce2;'}}) }}
+                {{ form_errors(registrationForm.password.second) }}
+            </div>
+
+            <button type="submit" style="padding: 0.75rem; background: #ff7a18; color: #fff; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 1rem;">
+                S'inscrire
+            </button>
+
+            <div style="text-align: center; margin-top: 0.5rem;">
+                <p style="color: #6c757d;">
+                    Déjà un compte ? 
+                    <a href="{{ path('app_login') }}" style="color: #ff7a18; font-weight: 600; text-decoration: none;">
+                        Se connecter
+                    </a>
+                </p>
+            </div>
+            
+        {{ form_end(registrationForm) }}
+    </main>
+{% endblock %}

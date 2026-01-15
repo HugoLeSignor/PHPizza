@@ -27,6 +27,27 @@
                     {{ form_errors(form.specialIngredient) }}
                 </div>
 
+                <div style="display: grid; gap: 0.35rem;">
+                    {{ form_label(form.doughType, null, {'label_attr': {'style': 'font-weight: 500;'}}) }}
+                    {{ form_widget(form.doughType, {'attr': {'style': 'padding: 0.6rem 0.75rem; border-radius: 8px; border: 1px solid #d7dce2;'}}) }}
+                    {{ form_errors(form.doughType) }}
+                </div>
+
+                <div style="display: grid; gap: 0.35rem;">
+                    {{ form_label(form.ingredients, null, {'label_attr': {'style': 'font-weight: 500;'}}) }}
+                    <div style="padding: 0.75rem; border: 1px solid #d7dce2; border-radius: 8px; background: #f9fafb; max-height: 300px; overflow-y: auto;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.5rem;">
+                            {% for child in form.ingredients %}
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    {{ form_widget(child) }}
+                                    {{ form_label(child, null, {'label_attr': {'style': 'margin: 0; cursor: pointer;'}}) }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {{ form_errors(form.ingredients) }}
+                </div>
+
                 <div style="display: flex; gap: 0.75rem;">
                     <button type="submit" style="flex: 1; padding: 0.75rem; background: #ff7a18; color: #fff; border: none; border-radius: 10px; font-weight: 700; cursor: pointer;">
                         Enregistrer
