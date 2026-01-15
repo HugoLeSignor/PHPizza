@@ -1,132 +1,126 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pizzas{% endblock %}
+{% block title %}Mes Pizzas{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
 
 {% block body %}
-    <main style="max-width: 720px; margin: 2rem auto; padding: 1.5rem; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); font-family: 'Segoe UI', Tahoma, sans-serif;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <h1 style="margin: 0;">📦 Pizzas en stock</h1>
-            <div style="display: flex; gap: 0.5rem; align-items: center;">
-                <span style="color: #6c757d;">👤 {{ app.user.username }}</span>
-                <a href="{{ path('app_logout') }}" style="padding: 0.5rem 1rem; background: #6c757d; color: #fff; text-decoration: none; border-radius: 6px; font-size: 0.9rem; font-weight: 600;">
-                    Déconnexion
-                </a>
-            </div>
+    <div class="container">
+        <div class="page-header">
+            <h1>🍕 Mes Créations</h1>
+            <p>Créez et personnalisez vos pizzas sur mesure</p>
         </div>
 
-        {% for message in app.flashes('error') %}
-            <div style="padding: 0.75rem 1rem; background: #ffe3e3; color: #721c24; border-radius: 8px; margin-bottom: 1rem;">
-                {{ message }}
-            </div>
-        {% endfor %}
-
-        {% for message in app.flashes('success') %}
-            <div style="padding: 0.75rem 1rem; background: #e6ffed; color: #155724; border-radius: 8px; margin-bottom: 1rem;">
-                {{ message }}
-            </div>
-        {% endfor %}
-
-        {% if error %}
-            <div style="padding: 0.75rem 1rem; background: #ffe3e3; color: #721c24; border-radius: 8px; margin-bottom: 1rem;">
-                {{ error }}
-            </div>
-        {% endif %}
-
-        {% if success %}
-            <div style="padding: 0.75rem 1rem; background: #e6ffed; color: #155724; border-radius: 8px; margin-bottom: 1rem;">
-                {{ success }}
-            </div>
-        {% endif %}
-
-        <section style="margin-bottom: 2rem;">
-            <h2 style="margin-bottom: 0.5rem;">Ajouter une pizza</h2>
-            {{ form_start(form, {'attr': {'style': 'display: grid; gap: 0.75rem;'}}) }}
+        <div class="content-grid">
+            <!-- Formulaire de création -->
+            <div class="card">
+                <h2>
+                    <span>➕</span>
+                    Nouvelle Pizza
+                </h2>
                 
-                <div style="display: grid; gap: 0.35rem;">
-                    {{ form_label(form.name, null, {'label_attr': {'style': 'font-weight: 500;'}}) }}
-                    {{ form_widget(form.name, {'attr': {'style': 'padding: 0.6rem 0.75rem; border-radius: 8px; border: 1px solid #d7dce2;'}}) }}
-                    {{ form_errors(form.name) }}
-                </div>
+                {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.name) }}
+                        {{ form_widget(form.name, {'attr': {'placeholder': 'Ex: Pizza Royale'}}) }}
+                        {{ form_errors(form.name) }}
+                    </div>
 
-                <div style="display: grid; gap: 0.35rem;">
-                    {{ form_label(form.specialIngredient, null, {'label_attr': {'style': 'font-weight: 500;'}}) }}
-                    {{ form_widget(form.specialIngredient, {'attr': {'style': 'padding: 0.6rem 0.75rem; border-radius: 8px; border: 1px solid #d7dce2;'}}) }}
-                    {{ form_errors(form.specialIngredient) }}
-                </div>
+                    <div class="form-group">
+                        {{ form_label(form.specialIngredient) }}
+                        {{ form_widget(form.specialIngredient, {'attr': {'placeholder': 'Ex: Truffe noire'}}) }}
+                        {{ form_errors(form.specialIngredient) }}
+                    </div>
 
-                <div style="display: grid; gap: 0.35rem;">
-                    {{ form_label(form.doughType, null, {'label_attr': {'style': 'font-weight: 500;'}}) }}
-                    {{ form_widget(form.doughType, {'attr': {'style': 'padding: 0.6rem 0.75rem; border-radius: 8px; border: 1px solid #d7dce2;'}}) }}
-                    {{ form_errors(form.doughType) }}
-                </div>
+                    <div class="form-group">
+                        {{ form_label(form.doughType) }}
+                        {{ form_widget(form.doughType) }}
+                        {{ form_errors(form.doughType) }}
+                    </div>
 
-                <div style="display: grid; gap: 0.35rem;">
-                    {{ form_label(form.ingredients, null, {'label_attr': {'style': 'font-weight: 500;'}}) }}
-                    <div style="padding: 0.75rem; border: 1px solid #d7dce2; border-radius: 8px; background: #f9fafb; max-height: 300px; overflow-y: auto;">
-                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.5rem;">
+                    <div class="form-group">
+                        {{ form_label(form.ingredients) }}
+                        <div class="ingredients-grid">
                             {% for child in form.ingredients %}
-                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div class="ingredient-item">
                                     {{ form_widget(child) }}
-                                    {{ form_label(child, null, {'label_attr': {'style': 'margin: 0; cursor: pointer;'}}) }}
+                                    {{ form_label(child) }}
                                 </div>
                             {% endfor %}
                         </div>
+                        {{ form_errors(form.ingredients) }}
                     </div>
-                    {{ form_errors(form.ingredients) }}
-                </div>
 
-                <button type="submit" style="padding: 0.75rem; background: #ff7a18; color: #fff; border: none; border-radius: 10px; font-weight: 700; cursor: pointer;">Ajouter au stock</button>
+                    <button type="submit" class="btn btn-primary">
+                        🎨 Créer ma pizza
+                    </button>
+                {{ form_end(form) }}
+            </div>
+
+            <!-- Liste des pizzas -->
+            <div class="card">
+                <h2>
+                    <span>📦</span>
+                    Inventaire ({{ pizzas|length }})
+                </h2>
                 
-            {{ form_end(form) }}
-        </section>
-
-        <section>
-            <h2 style="margin-bottom: 0.5rem;">Inventaire</h2>
-            {% if pizzas is empty %}
-                <p>Aucune pizza enregistrée pour l'instant.</p>
-            {% else %}
-                <ul style="list-style: none; padding: 0; display: grid; gap: 0.75rem;">
-                    {% for pizza in pizzas %}
-                        <li style="padding: 0.9rem 1rem; border: 1px solid #e3e8ef; border-radius: 10px; background: linear-gradient(135deg, #fff 0%, #f9fbff 100%); display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <div style="font-size: 1.05rem; font-weight: 700;">{{ pizza.name }}</div>
-                                <div style="color: #475467;">Ingrédient secret : {{ pizza.specialIngredient }}</div>
-                                <div style="color: #6b7280; font-size: 0.9rem; margin-top: 0.25rem;">
-                                    <strong>Type de pâte :</strong> {{ pizza.doughType.name }}
+                {% if pizzas is empty %}
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🍕</div>
+                        <p>Aucune pizza créée pour l'instant.</p>
+                        <p>Commencez par créer votre première pizza !</p>
+                    </div>
+                {% else %}
+                    <div class="pizza-list">
+                        {% for pizza in pizzas %}
+                            <div class="pizza-item">
+                                <div class="pizza-info">
+                                    <h3>{{ pizza.name }}</h3>
+                                    <div class="pizza-detail">
+                                        <strong>Ingrédient secret:</strong> {{ pizza.specialIngredient }}
+                                    </div>
+                                    <div class="pizza-detail">
+                                        <strong>Pâte:</strong> {{ pizza.doughType.name }}
+                                    </div>
+                                    {% if pizza.ingredients|length > 0 %}
+                                        <div class="pizza-detail">
+                                            <strong>Ingrédients:</strong>
+                                            {% for ingredient in pizza.ingredients %}
+                                                {{ ingredient.name }}{% if not loop.last %}, {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                    <div class="pizza-owner">
+                                        👤 {{ pizza.owner.username }}
+                                    </div>
                                 </div>
-                                {% if pizza.ingredients|length > 0 %}
-                                    <div style="color: #6b7280; font-size: 0.9rem; margin-top: 0.25rem;">
-                                        <strong>Ingrédients :</strong> 
-                                        {% for ingredient in pizza.ingredients %}
-                                            {{ ingredient.name }}{% if not loop.last %}, {% endif %}
-                                        {% endfor %}
+                                
+                                {% if app.user == pizza.owner %}
+                                    <div class="pizza-actions">
+                                        <a href="{{ path('app_pizza_edit', {'id': pizza.id}) }}" class="btn-action btn-edit">
+                                            ✏️ Modifier
+                                        </a>
+                                        <form method="post" action="{{ path('app_pizza_delete', {'id': pizza.id}) }}" 
+                                              onsubmit="return confirm('Voulez-vous vraiment supprimer cette pizza ?');" 
+                                              class="delete-form">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pizza.id) }}">
+                                            <button type="submit" class="btn-action btn-delete">
+                                                🗑️ Supprimer
+                                            </button>
+                                        </form>
+                                    </div>
+                                {% else %}
+                                    <div class="no-access">
+                                        🔒 Pizza d'un autre utilisateur
                                     </div>
                                 {% endif %}
-                                <div style="color: #9ca3af; font-size: 0.85rem; margin-top: 0.25rem;">
-                                    👤 Par : {{ pizza.owner.username }}
-                                </div>
                             </div>
-                            {% if app.user == pizza.owner %}
-                                <div style="display: flex; gap: 0.5rem;">
-                                    <a href="{{ path('app_pizza_edit', {'id': pizza.id}) }}" style="padding: 0.5rem 1rem; background: #007bff; color: #fff; text-decoration: none; border-radius: 6px; font-size: 0.9rem; font-weight: 600;">
-                                        Modifier
-                                    </a>
-                                    <form method="post" action="{{ path('app_pizza_delete', {'id': pizza.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette pizza ?');" style="margin: 0;">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pizza.id) }}">
-                                        <button type="submit" style="padding: 0.5rem 1rem; background: #dc3545; color: #fff; border: none; border-radius: 6px; font-size: 0.9rem; font-weight: 600; cursor: pointer;">
-                                            Supprimer
-                                        </button>
-                                    </form>
-                                </div>
-                            {% else %}
-                                <div style="color: #9ca3af; font-size: 0.85rem; font-style: italic;">
-                                    Pizza d'un autre utilisateur
-                                </div>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </section>
-    </main>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

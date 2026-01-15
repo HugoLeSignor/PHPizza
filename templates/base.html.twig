@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}PizzaMaker{% endblock %} | Créez votre pizza sur mesure</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🍕</text></svg>">
         {% block stylesheets %}
         {% endblock %}
 
@@ -12,6 +13,43 @@
         {% endblock %}
     </head>
     <body>
+        <!-- Barre de navigation -->
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="{{ path('app_pizza_index') }}" class="navbar-brand">
+                    <span class="logo">🍕</span>
+                    <div>
+                        <div>PizzaMaker</div>
+                        <div class="navbar-tagline">Créez votre pizza sur mesure</div>
+                    </div>
+                </a>
+                
+                <div class="navbar-menu">
+                    {% if app.user %}
+                        <div class="navbar-user">
+                            <span>👤</span>
+                            <span>{{ app.user.username }}</span>
+                        </div>
+                        <a href="{{ path('app_logout') }}" class="navbar-link">Déconnexion</a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}" class="navbar-link">Connexion</a>
+                        <a href="{{ path('app_register') }}" class="navbar-link">Inscription</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        <!-- Messages Flash -->
+        <div class="flash-messages">
+            {% for type in ['success', 'error', 'warning', 'info'] %}
+                {% for message in app.flashes(type) %}
+                    <div class="flash-message flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+
         {% block body %}{% endblock %}
     </body>
 </html>
