@@ -1,0 +1,82 @@
+// Navbar
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: $bg-gradient-primary;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 0 $spacing-2xl;
+
+  &-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    @include flex-center;
+    justify-content: space-between;
+    height: 80px;
+  }
+
+  &-brand {
+    @include flex-center;
+    gap: $spacing-md;
+    text-decoration: none;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+    .logo {
+      font-size: 2.5rem;
+      animation: rotate 4s linear infinite;
+    }
+  }
+
+  &-tagline {
+    font-size: 0.85rem;
+    font-weight: 400;
+    opacity: 0.95;
+    letter-spacing: 0.5px;
+  }
+
+  &-menu {
+    @include flex-center;
+    gap: $spacing-xl;
+  }
+
+  &-user {
+    @include flex-center;
+    gap: $spacing-md;
+    color: white;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+  }
+
+  &-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: background $transition-fast;
+    background: rgba(255, 255, 255, 0.15);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+  }
+}
+
+@keyframes rotate {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+}
+

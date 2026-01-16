@@ -1,0 +1,75 @@
+// Liste des pizzas
+.pizza-list {
+  display: grid;
+  gap: $spacing-xl;
+}
+
+.pizza-item {
+  background: white;
+  border-radius: 18px;
+  padding: $spacing-xl;
+  box-shadow: $shadow-md;
+  @include flex-center;
+  justify-content: space-between;
+  transition: box-shadow $transition-fast, border-left-width $transition-fast;
+  border-left: 5px solid $color-primary;
+
+  &:hover {
+    box-shadow: 0 6px 24px rgba($color-primary, 0.12);
+    border-left-width: 6px;
+  }
+}
+
+.pizza-info {
+  h3 {
+    font-size: 1.4rem;
+    color: $color-secondary;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.pizza-detail {
+  color: $color-text-muted;
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+
+  strong {
+    color: $color-text-dark;
+  }
+}
+
+.pizza-owner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #f0f0f0;
+  padding: $spacing-xs $spacing-md;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: $spacing-sm;
+}
+
+.pizza-actions {
+  @include flex-center;
+  gap: $spacing-md;
+  flex-shrink: 0;
+}
+
+.no-access {
+  color: $color-gray;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: $spacing-3xl;
+  color: $color-gray;
+
+  &-icon {
+    font-size: 4rem;
+    margin-bottom: $spacing-lg;
+  }
+}
+

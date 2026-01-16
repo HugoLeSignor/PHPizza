@@ -1,0 +1,78 @@
+// Formulaires
+.form-group {
+  margin-bottom: $spacing-xl;
+
+  label {
+    display: block;
+    font-weight: 600;
+    color: $color-secondary;
+    margin-bottom: $spacing-sm;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: $spacing-md $spacing-lg;
+    border: 2px solid #e0e0e0;
+    border-radius: $border-radius-md;
+    font-size: 1rem;
+    transition: border-color $transition-normal;
+
+    &[type='text'],
+    &[type='password'],
+    &[type='email'] {
+      padding: 0.875rem $spacing-lg;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+    }
+  }
+}
+
+// Grille d'ingrédients
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: #f8f9fa;
+  border-radius: $border-radius-md;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.ingredient-item {
+  @include flex-center;
+  gap: $spacing-sm;
+  padding: $spacing-sm;
+  background: white;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+  transition: background $transition-fast;
+  border: 1px solid transparent;
+
+  &:hover {
+    background: #fff5f0;
+    border-color: rgba($color-primary, 0.2);
+  }
+
+  input[type='checkbox'] {
+    width: auto;
+    cursor: pointer;
+  }
+
+  label {
+    cursor: pointer;
+    margin: 0 !important;
+    font-weight: 500;
+  }
+}
+
+// Formulaires inline
+.delete-form {
+  margin: 0;
+}
+

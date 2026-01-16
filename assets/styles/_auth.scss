@@ -1,0 +1,54 @@
+// Pages d'authentification
+.auth-container {
+  max-width: 480px;
+  margin: 4rem auto;
+  padding: 0 $spacing-xl;
+}
+
+.auth-card {
+  background: white;
+  border-radius: $border-radius-3xl;
+  padding: $spacing-3xl;
+  box-shadow: $shadow-2xl;
+  border: 1px solid rgba($color-primary, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: $spacing-2xl;
+
+  h1 {
+    font-size: 2rem;
+    color: $color-secondary;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    color: $color-text-muted;
+  }
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: $spacing-xl;
+  padding-top: $spacing-xl;
+  border-top: 1px solid #e0e0e0;
+
+  a {
+    color: $color-primary;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-primary-light;
+    }
+  }
+
+  &-text {
+    color: $color-text-muted;
+  }
+}
+

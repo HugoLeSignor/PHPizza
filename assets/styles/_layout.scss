@@ -1,0 +1,45 @@
+// Container principal
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-2xl $spacing-xl;
+  position: relative;
+  z-index: 1;
+
+  &-edit {
+    max-width: 720px;
+    padding: 0 $spacing-xl;
+  }
+}
+
+// En-tête de page
+.page-header {
+  text-align: center;
+  margin-bottom: $spacing-3xl;
+  color: $color-secondary;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: $spacing-sm;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: $color-text-muted;
+  }
+}
+
+// Grille de contenu
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: $spacing-2xl;
+  align-items: start;
+
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr;
+  }
+}
+

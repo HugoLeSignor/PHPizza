@@ -1,0 +1,27 @@
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin card-shadow {
+  box-shadow: $shadow-lg;
+  border: 1px solid rgba($color-primary, 0.1);
+}
+
+@mixin card-shadow-hover {
+  box-shadow: 0 12px 40px rgba($color-primary, 0.15);
+  border-color: rgba($color-primary, 0.2);
+}
+
+@mixin button-primary {
+  background: $bg-gradient-primary;
+  color: white;
+  box-shadow: 0 4px 15px rgba($color-primary, 0.3);
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba($color-primary, 0.45);
+    opacity: 0.95;
+  }
+}
+

@@ -1,0 +1,55 @@
+// Messages Flash
+.flash-messages {
+  max-width: 1200px;
+  margin: $spacing-2xl auto;
+  padding: 0 $spacing-xl;
+}
+
+.flash-message {
+  padding: $spacing-lg $spacing-xl;
+  border-radius: $border-radius-lg;
+  margin-bottom: $spacing-lg;
+  font-weight: 500;
+  box-shadow: $shadow-sm;
+  animation: slideIn $transition-normal ease-out;
+
+  &-inline {
+    margin-bottom: $spacing-xl;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.flash-success {
+  background: #d4edda;
+  color: #155724;
+  border-left: 4px solid $color-success;
+}
+
+.flash-error {
+  background: #f8d7da;
+  color: #721c24;
+  border-left: 4px solid $color-error;
+}
+
+.flash-warning {
+  background: #fff3cd;
+  color: #856404;
+  border-left: 4px solid $color-warning;
+}
+
+.flash-info {
+  background: #d1ecf1;
+  color: #0c5460;
+  border-left: 4px solid $color-info;
+}
+

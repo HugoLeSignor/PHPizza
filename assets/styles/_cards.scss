@@ -1,0 +1,29 @@
+// Cartes
+.card {
+  background: white;
+  border-radius: $border-radius-2xl;
+  padding: $spacing-2xl;
+  @include card-shadow;
+  transition: box-shadow $transition-fast, border-color $transition-fast;
+
+  &:hover {
+    @include card-shadow-hover;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: $color-secondary;
+    margin-bottom: $spacing-2xl;
+    @include flex-center;
+    gap: $spacing-md;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: $spacing-xl;
+    color: $color-primary;
+    @include flex-center;
+    gap: $spacing-sm;
+  }
+}
+

@@ -1,0 +1,77 @@
+// Boutons
+.btn {
+  width: 100%;
+  padding: $spacing-lg;
+  border: none;
+  border-radius: $border-radius-lg;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all $transition-normal;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  flex: 1;
+
+  &:not(.btn-action) {
+    text-align: center;
+    text-decoration: none;
+    display: block;
+  }
+
+  &-primary {
+    @include button-primary;
+  }
+
+  &-secondary {
+    background: $color-gray;
+    color: white;
+
+    &:hover {
+      background: $color-gray-dark;
+      opacity: 0.9;
+    }
+  }
+
+  &-action {
+    padding: 0.6rem 1.2rem;
+    border-radius: $border-radius-sm;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  &-edit {
+    background: $color-blue;
+    color: white;
+
+    &:hover {
+      background: $color-blue-dark;
+      opacity: 0.9;
+    }
+  }
+
+  &-delete {
+    background: $color-red;
+    color: white;
+
+    &:hover {
+      background: $color-red-dark;
+      opacity: 0.9;
+    }
+  }
+
+  &-submit {
+    @include button-primary;
+    width: 100%;
+    border-radius: $border-radius-lg;
+    font-size: 1.1rem;
+    transition: box-shadow $transition-fast, opacity $transition-fast;
+  }
+}
+
+.button-group {
+  @include flex-center;
+  gap: $spacing-lg;
+  margin-top: $spacing-2xl;
+}
+
